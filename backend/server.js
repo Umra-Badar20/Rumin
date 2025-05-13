@@ -26,7 +26,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 const allowedOrigin = "https://rumin-production.up.railway.app";
-console.log("Request Origin:", req.headers.origin);
 
 app.use((req, res, next) => {
   console.log("Request Origin:", req.headers.origin);
