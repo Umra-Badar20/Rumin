@@ -1,0 +1,27 @@
+{
+    "name": "visa-web",
+    "version": "1.0.0",
+    "description": "Visa website with frontend + backend",
+    "main": "backend/server.js",
+    "type": "module",
+    "scripts": {
+      "start": "node backend/server.js",
+      "dev": "nodemon backend/server.js"
+    },
+    "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "cookie-parser": "^1.4.6",
+      "cors": "^2.8.5",
+      "dotenv": "^16.0.3",
+      "express": "^4.18.2",
+      "jsonwebtoken": "^9.0.2",
+      "mongoose": "^7.6.5",
+      "nodemon": "^3.0.2",
+      "sweetalert2": "^11.21.0"
+    },
+    "nodemonConfig": {
+      "execMap": {
+        "js": "node --experimental-modules"
+      }
+    }
+  }
