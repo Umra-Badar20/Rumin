@@ -47,6 +47,8 @@ connectDB();
 app.use("/api/contact", contactRoutes);
 app.use("/api/auth", authRoutes);
 
+console.log("Root directory contents:", fs.readdirSync(__dirname));
+console.log("Parent directory contents:", fs.readdirSync(path.join(__dirname, '..')));
 // Serve static files (HTML, CSS, JS)
 app.use(express.static(frontendPath));
 
