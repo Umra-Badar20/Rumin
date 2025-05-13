@@ -8,10 +8,32 @@ import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import fs from 'fs';
 
-// Setup __dirname for ES Modules
+// Get current directory path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Define frontend path (go up one level from backend, then into frontend)
+const frontendPath = path.join(__dirname, '../frontend');
+
+// Verify the path exists
+if (!fs.existsSync(frontendPath)) {
+  console.error('Frontend directory not found at:', frontendPath);
+  console.log('Current directory contents:', fs.readdirSync(path.join(__dirname, '..')));
+} else {
+  console.log('Found frontend directory at:', frontendPath);
+  console.log('Frontend contents:', fs.readdirSync(frontendPath));
+}
+
+// Serve static files
+const app = express();
+app.use(express.static(frontendPath));
+
+// Catch-all route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, "./.env") });
@@ -19,7 +41,6 @@ dotenv.config({ path: path.join(__dirname, "./.env") });
 // Connect to MongoDB
 connectDB();
 
-const app = express();
 
 // Body parser and cookie parser
 app.use(express.json());
