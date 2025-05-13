@@ -1,6 +1,9 @@
 
 /*** Spinner Start ***/
 /*** Spinner ***/
+body{
+    overflow-x: hidden;
+}
 #spinner {
     opacity: 0;
     visibility: hidden;
@@ -1088,7 +1091,3 @@
     font-size: 1.1rem;
     line-height: 1.6;
 }
-/* .service-img img{
-    max-height: 270px;
-    max-width: 500px;
-} */
