@@ -309,7 +309,7 @@
                                 <a href="tel:03139365284" class="btn btn-primary rounded-pill me-2">
                                     <i class="fas fa-phone me-2"></i> Call Now
                                 </a>
-                                <span class="text-muted small">First Floor 1143 Deans Trade Center</span>
+                                <span class="text-muted small">FF-1143 Deans Trade Center Peshawar Cantt.</span>
                             </div>
                         </div>
                     </div>
@@ -685,79 +685,101 @@
 </div>
 <!-- Features End -->
 <!-- Features End -->
-
-        <!-- Countries We Offer Start -->
-        <div class="container-fluid country overflow-hidden py-5">
-            <div class="container">
-                <div class="section-title text-center wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 70px;">
-                    <div class="sub-style">
-                        <h5 class="sub-title text-primary px-3">COUNTRIES WE OFFER</h5>
-                    </div>
-                    <h1 class="display-5 mb-4">Immigration & visa services following Countries</h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
-                </div>
-                <div class="row g-4 text-center">
-                    <div class="col-lg-6 col-xl-3 mb-5 mb-xl-0 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="country-item">
-                            <div class="rounded overflow-hidden">
-                                <img src="img/country-1.jpg" class="img-fluid w-100 rounded" alt="Image">
-                            </div>
-                            <div class="country-flag">
-                                <img src="img/brazil.jpg" class="img-fluid rounded-circle" alt="Image">
-                            </div>
-                            <div class="country-name">
-                                <a href="#" class="text-white fs-4">Brazil</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-3 mb-5 mb-xl-0 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="country-item">
-                            <div class="rounded overflow-hidden">
-                                <img src="img/country-2.jpg" class="img-fluid w-100 rounded" alt="Image">
-                            </div>
-                            <div class="country-flag">
-                                <img src="img/india.jpg" class="img-fluid rounded-circle" alt="Image">
-                            </div>
-                            <div class="country-name">
-                                <a href="#" class="text-white fs-4">india</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-3 mb-5 mb-xl-0 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="country-item">
-                            <div class="rounded overflow-hidden">
-                                <img src="img/country-3.jpg" class="img-fluid w-100 rounded" alt="Image">
-                            </div>
-                            <div class="country-flag">
-                                <img src="img/usa.jpg" class="img-fluid rounded-circle" alt="Image">
-                            </div>
-                            <div class="country-name">
-                                <a href="#" class="text-white fs-4">New York</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-3 mb-5 mb-xl-0 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="country-item">
-                            <div class="rounded overflow-hidden">
-                                <img src="img/country-4.jpg" class="img-fluid w-100 rounded" alt="Image">
-                            </div>
-                            <div class="country-flag">
-                                <img src="img/italy.jpg" class="img-fluid rounded-circle" alt="Image">
-                            </div>
-                            <div class="country-name">
-                                <a href="#" class="text-white fs-4">Italy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <a class="btn btn-primary border-secondary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.1s" href="#">More Countries</a>
-                    </div>
-                </div>
+!-- Countries We Offer Start -->
+<div class="container-fluid country overflow-hidden py-5">
+    <div class="container py-5">
+        <div class="section-title text-center wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 70px;">
+            <div class="sub-style">
+                <h5 class="sub-title text-primary px-3">COUNTRIES WE OFFER</h5>
             </div>
+            <h1 class="display-5 mb-4">Immigration & visa services for Various Countries</h1>
+            <p class="mb-0">With over a decade of experience, RuMin Consultants has successfully helped clients immigrate to top destinations worldwide. Our expert team provides end-to-end visa assistance for study, work, and permanent residency.</p>
         </div>
-        <!-- Countries We Offer End -->
+        <div class="row g-4 text-center countries-list">
+            <!-- Country Cards will be injected here -->
+        </div>
+        <div class="col-12 text-center">
+            <button class="btn btn-primary border-secondary rounded-pill py-3 px-5 more-countries" onclick="loadMoreCountries()">More Countries</button>
+        </div>
+         <div class="col-12 text-center contact-info" style="display: none; margin-top: 30px;">
+            <p class="text-secondary">For more countries and detailed immigration services, please <a href="./contact.html" class="text-primary">contact us</a>.</p>
+        </div>
+    </div>
+</div>
+<!-- Countries We Offer End -->
 
-       
+<script>
+    const countriesData = [
+        { name: 'UAE', flag: 'img/UAE.png', image: 'img/country-17.jpg' },
+        { name: 'Saudi Arabia', flag: 'img/saudiarabia.png', image: 'img/country-18.jpg' },
+        { name: 'Turkey', flag: 'img/turkey.jpg', image: 'img/country-19.jpg' },
+        { name: 'Thailand', flag: 'img/thailand.png', image: 'img/country-20.jpg' },
+        { name: 'Canada', flag: 'img/canada.jpg', image: 'img/country-5.jpg' },
+        { name: 'Brazil', flag: 'img/brazil.jpg', image: 'img/country-1.jpg' },
+        { name: 'India', flag: 'img/india.jpg', image: 'img/country-2.jpg' },
+        { name: 'USA', flag: 'img/usa.jpg', image: 'img/country-3.jpg' },
+        { name: 'Italy', flag: 'img/italy.jpg', image: 'img/country-4.jpg' },
+        
+        { name: 'Australia', flag: 'img/austrailia.png', image: 'img/country-6.jpg' },
+        { name: 'Germany', flag: 'img/germany.jpg', image: 'img/country-7.jpg' },
+        { name: 'France', flag: 'img/france.jpg', image: 'img/country-8.jpg' },
+        { name: 'UK', flag: 'img/uk.png', image: 'img/country-9.jpg' },
+        { name: 'Spain', flag: 'img/spain.png', image: 'img/country-10.jpg' },
+        { name: 'South Africa', flag: 'img/southafrica.jpg', image: 'img/country-11.jpg' },
+        { name: 'Japan', flag: 'img/japan.jpg', image: 'img/country-12.jpg' },
+        { name: 'South Korea', flag: 'img/southkorea.jpg', image: 'img/country-13.jpg' },
+        { name: 'Argentina', flag: 'img/argentina.jpg', image: 'img/country-14.jpg' },
+        { name: 'Mexico', flag: 'img/mexico.png', image: 'img/country-15.jpg' },
+        { name: 'China', flag: 'img/china.png', image: 'img/country-16.jpg' },
+        
+        
+    ];
+
+    let currentIndex = 0;
+
+    function loadMoreCountries() {
+        const container = document.querySelector('.countries-list');
+        let limit = currentIndex + 4;
+        const fragment = document.createDocumentFragment();
+
+        for (let i = currentIndex; i < limit && i < countriesData.length; i++) {
+            const country = countriesData[i];
+            const col = document.createElement('div');
+            col.className = 'col-lg-6 col-xl-3 mb-5 mb-xl-0 wow fadeInUp';
+            col.setAttribute('data-wow-delay', '0.1s');
+            col.innerHTML = `
+                <div class="country-item">
+                    <div class="rounded overflow-hidden">
+                        <img src="${country.image}" class="img-fluid w-100 rounded" style="width: 100%; height: 400px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;" alt="${country.name}">
+                    </div>
+                    <div class="country-flag">
+                        <img src="${country.flag}" class="img-fluid rounded-circle" alt="${country.name}">
+                    </div>
+                    <div class="country-name">
+                        <a href="#" class="text-white fs-4">${country.name}</a>
+                    </div>
+                </div> <br> <br>
+            `;
+            fragment.appendChild(col);
+        }
+
+        container.appendChild(fragment);
+        currentIndex = limit;
+
+        if (currentIndex >= countriesData.length) {
+            document.querySelector('.more-countries').style.display = 'none';
+        }
+        if (currentIndex >= countriesData.length) {
+            document.querySelector('.more-countries').style.display = 'none';
+            document.querySelector('.contact-info').style.display = 'block';
+        }
+    }
+
+    // Load the first set of countries
+    loadMoreCountries();
+</script>
+<!-- Countries We Offer End -->
+
 
 
            <!-- Footer Start -->

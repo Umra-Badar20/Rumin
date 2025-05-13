@@ -20,7 +20,8 @@ createApp({
         message.name.toLowerCase().includes(query) ||
         message.email.toLowerCase().includes(query) ||
         message.subject.toLowerCase().includes(query) ||
-        message.message.toLowerCase().includes(query)
+        message.message.toLowerCase().includes(query)||
+        message.phone.includes(query)
       );
     }
   },
