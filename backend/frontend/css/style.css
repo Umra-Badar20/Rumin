@@ -1,8 +1,12 @@
 
 /*** Spinner Start ***/
 /*** Spinner ***/
-body{
+html, body {
     overflow-x: hidden;
+    width: 100%;
+}
+html {
+    box-sizing: border-box;
 }
 #spinner {
     opacity: 0;
