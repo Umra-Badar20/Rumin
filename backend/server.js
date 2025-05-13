@@ -6,9 +6,12 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 // Load environment variables
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: path.join(__dirname, "./.env") });
 
 // Connect to database
 connectDB();
@@ -26,8 +29,6 @@ app.use("/api/auth", authRoutes);
 
 // Setup __dirname in ES modules
 import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Serve static frontend files from ../frontend
 const frontendPath = path.join(__dirname, "../frontend");
