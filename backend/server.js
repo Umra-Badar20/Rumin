@@ -26,16 +26,18 @@ app.use(express.json());
 app.use(cookieParser());
 
 const allowedOrigin = "https://rumin-production.up.railway.app";
+console.log("Request Origin:", req.headers.origin);
 
 app.use((req, res, next) => {
+  console.log("Request Origin:", req.headers.origin);
+
   res.header("Access-Control-Allow-Origin", allowedOrigin);
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");
 
-  // Handle preflight requests
   if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
+    return res.sendStatus(200); // Important: Respond to preflight
   }
 
   next();
