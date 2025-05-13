@@ -36,16 +36,12 @@ app.use(cors({
 app.use("/api/contact", contactRoutes);
 app.use("/api/auth", authRoutes);
 
-// === Serve Frontend ===
-// Assuming project root has both /frontend and /backend
-const frontendPath = path.join(__dirname, "../frontend");
-console.log("Serving static from:", frontendPath); // Debug log
+// Serve static files from the frontend directory
+app.use(express.static(path.join(__dirname, '../frontend')));
 
-app.use(express.static(frontendPath));
-
-// Catch-all for client-side routing (avoiding API paths)
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
+// For single-page applications, add a catch-all route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 // === Start Server ===
