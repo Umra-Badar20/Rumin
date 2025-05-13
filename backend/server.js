@@ -21,46 +21,41 @@ connectDB();
 
 const app = express();
 
-// Body parser
+// Body parser and cookie parser
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigin = "https://rumin-production.up.railway.app";
+// Enable CORS for all routes
+app.use(cors({
+  origin: ['http://localhost:5000', 'https://rumin-production.up.railway.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-app.use((req, res, next) => {
-  console.log("Request Origin:", req.headers.origin);
-
-  res.header("Access-Control-Allow-Origin", allowedOrigin);
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200); // Important: Respond to preflight
-  }
-
-  next();
-});
-
-
-// Mount API routes
+// === API Routes ===
 app.use("/api/contact", contactRoutes);
 app.use("/api/auth", authRoutes);
 
-// Serve frontend (if hosting from same backend)
+// === Serve Frontend ===
+// Assuming project root has both /frontend and /backend
 const frontendPath = path.join(__dirname, "../frontend");
+console.log("Serving static from:", frontendPath); // Debug log
+
 app.use(express.static(frontendPath));
-app.get("*", (req, res) => {
+
+// Catch-all for client-side routing (avoiding API paths)
+app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
+// === Start Server ===
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () =>
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );
 
-// Handle unhandled promise rejections
+// === Handle unhandled promise rejections ===
 process.on("unhandledRejection", (err) => {
-  console.log(`Error: ${err.message}`);
+  console.error(`Unhandled Rejection: ${err.message}`);
   server.close(() => process.exit(1));
 });

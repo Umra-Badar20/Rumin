@@ -350,11 +350,12 @@
         };
     
         try {
-            const response = await fetch("https://rumin-consultant-limited-production.up.railway.app/api/contact", {
+            const response = await fetch("/api/contact", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                mode: 'cors',  // Use 'cors' instead of 'no-cors'
                 body: JSON.stringify(formData),
                 credentials: "include",
             });
