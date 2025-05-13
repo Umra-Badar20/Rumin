@@ -6,7 +6,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
+import path from 'path';
 // Config
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,17 +25,12 @@ app.use(cors({
 }));
 
 // Verify frontend directory
-const frontendPath = join(__dirname, '../frontend');
-if (!existsSync(frontendPath)) {
-  console.error('Frontend not found at:', frontendPath);
-} else {
-  console.log('Serving frontend from:', frontendPath);
-  app.use(express.static(frontendPath));
-  app.get('*', (req, res) => {
-    res.sendFile(join(frontendPath, 'index.html'));
-  });
-}
+app.use(express.static(path.join(__dirname, "../frontend")));
 
+// Handle all routes (SPA fallback)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
