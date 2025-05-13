@@ -25,14 +25,18 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// Enable CORS only for your frontend domain
 const allowedOrigin = "https://rumin-production.up.railway.app";
-app.use(
-  cors({
-    origin: allowedOrigin,
-    credentials: true, // if using cookies/auth headers
-  })
-);
+
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true,
+}));
+
+// Ensure preflight OPTIONS requests are handled
+app.options("*", cors({
+  origin: allowedOrigin,
+  credentials: true,
+}));
 
 // Mount API routes
 app.use("/api/contact", contactRoutes);
