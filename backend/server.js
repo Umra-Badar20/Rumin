@@ -27,16 +27,20 @@ app.use(cookieParser());
 
 const allowedOrigin = "https://rumin-production.up.railway.app";
 
-app.use(cors({
-  origin: allowedOrigin,
-  credentials: true,
-}));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", allowedOrigin);
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
 
-// Ensure preflight OPTIONS requests are handled
-app.options("*", cors({
-  origin: allowedOrigin,
-  credentials: true,
-}));
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
 
 // Mount API routes
 app.use("/api/contact", contactRoutes);
