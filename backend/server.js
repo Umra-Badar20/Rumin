@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Define frontend path (go up one level from backend, then into frontend)
-const frontendPath = path.join(__dirname, '../frontend');
+const frontendPath = path.join(__dirname, 'frontend');
 
 // Verify the frontend directory exists (for debugging)
 if (!fs.existsSync(frontendPath)) {
