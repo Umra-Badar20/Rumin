@@ -1,40 +1,46 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import path from "path";
 import cookieParser from "cookie-parser";
+import path from "path";
+import { fileURLToPath } from "url";
+
 import connectDB from "./config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-const __filename = fileURLToPath(import.meta.url);
 
+// Setup __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, "./.env") });
 
-// Connect to database
+// Connect to MongoDB
 connectDB();
 
 const app = express();
 
-// Middleware
+// Body parser
 app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
 
-// API Routes
+// Enable CORS only for your frontend domain
+const allowedOrigin = "https://rumin-production.up.railway.app";
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true, // if using cookies/auth headers
+  })
+);
+
+// Mount API routes
 app.use("/api/contact", contactRoutes);
 app.use("/api/auth", authRoutes);
 
-// Setup __dirname in ES modules
-import { fileURLToPath } from "url";
-
-// Serve static frontend files from ../frontend
+// Serve frontend (if hosting from same backend)
 const frontendPath = path.join(__dirname, "../frontend");
 app.use(express.static(frontendPath));
-
-// Serve index.html for root or undefined routes
 app.get("*", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
@@ -45,7 +51,7 @@ const server = app.listen(PORT, () =>
 );
 
 // Handle unhandled promise rejections
-process.on("unhandledRejection", (err, promise) => {
+process.on("unhandledRejection", (err) => {
   console.log(`Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
