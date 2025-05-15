@@ -8,6 +8,7 @@ html, body {
 html {
     box-sizing: border-box;
 }
+
 #spinner {
     opacity: 0;
     visibility: hidden;
@@ -170,6 +171,24 @@ html {
     border: 1px solid var(--bs-primary) !important;
 }
 
+/*** Fixed Header ***/
+.header-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it stays above other content */
+}
+
+
+@media (min-width: 992px) {
+    .header-sticky {
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+    }
+   
+}
 
 /*** Topbar Start ***/
 .fixed-top .container {
@@ -224,12 +243,12 @@ html {
 }
 
 .navbar-light .navbar-brand img {
-    max-height: 105px;
+    max-height: 85px;
     transition: .5s;
 }
 
 .sticky-top .navbar-light .navbar-brand img {
-    max-height: 120px;
+    max-height: 85px;
 }
 
 .navbar .dropdown-toggle::after {
@@ -292,7 +311,7 @@ html {
     }
 
     .navbar-light .navbar-brand img {
-        max-height: 117px;
+        max-height: 75px;
     }
 }
 
