@@ -23,13 +23,13 @@ html {
 }
 /*** Spinner End ***/
 
-.back-to-top {
+.floating-wapp {
     position: fixed;
     right: 30px;
     bottom: 30px;
     display: flex;
-    width: 45px;
-    height: 45px;
+    width: 65px;
+    height: 65px;
     align-items: center;
     justify-content: center;
     transition: 0.5s;
@@ -213,7 +213,7 @@ html {
 
 @media (max-width: 768px) {
     .topbar {
-        display: none;    
+        /* display: none;     */
     }
 }
 /*** Topbar End ***/
