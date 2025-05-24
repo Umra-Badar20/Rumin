@@ -4,16 +4,24 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/"
+      "src": "/api/(.*)",
+      "dest": "server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "frontend/$1"
+    },
+    {
+      "src": "/",
+      "dest": "frontend/index.html"
     }
   ]
 }

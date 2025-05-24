@@ -110,18 +110,20 @@ app.use("/api/auth", authRoutes);
 
 // Static files configuration for Vercel
 const staticPath = path.join(__dirname, 'frontend');
-app.use(express.static(staticPath));
-
+// app.use(express.static(staticPath));
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static(staticPath));
+}
 // SPA Fallback Route (must come after static files)
-app.get('*', (req, res) => {
-  const indexPath = path.join(staticPath, 'index.html');
+// app.get('*', (req, res) => {
+//   const indexPath = path.join(staticPath, 'index.html');
   
-  if (fs.existsSync(indexPath)) {
-    res.sendFile(indexPath);
-  } else {
-    res.status(404).json({ message: "Frontend files not found" });
-  }
-});
+//   if (fs.existsSync(indexPath)) {
+//     res.sendFile(indexPath);
+//   } else {
+//     res.status(404).json({ message: "Frontend files not found" });
+//   }
+// });
 
 // Server start
 const PORT = process.env.PORT || 3000; // Vercel uses 3000 by default
