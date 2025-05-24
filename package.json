@@ -6,9 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "vercel-build": "cd backend && npm install",
-    "build": "echo 'Building...'"
+    "dev": "nodemon server.js"
 
   },
   "dependencies": {
