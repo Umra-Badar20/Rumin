@@ -37,7 +37,7 @@ createApp({
     async login() {
       try {
         this.isLoading = true; // Start loading
-        const response = await axios.post('/api/auth/login', this.loginData);
+        const response = await axios.post('https://rumin-puce.vercel.app/api/auth/login', this.loginData);
         this.token = response.data.token;
         localStorage.setItem('token', this.token);
         this.authenticated = true;
@@ -57,7 +57,7 @@ createApp({
     async fetchMessages() {
       try {
         this.isLoading = true; // Start loading
-        const response = await axios.get('/api/contact', {
+        const response = await axios.get('https://rumin-puce.vercel.app/api/contact', {
           headers: {
             'Authorization': `Bearer ${this.token}`
           }
