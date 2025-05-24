@@ -16,6 +16,11 @@
       "dest": "server.js"
     },
     {
+      "src": "/api/contact/(.*)",
+      "dest": "/api/contact",
+      "methods": ["DELETE"] 
+    },
+    {
       "src": "/(.*)",
       "dest": "frontend/$1"
     }

@@ -98,6 +98,8 @@ app.use(cors({
     'http://localhost:5000',
     'https://rumin-puce.vercel.app'
   ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Ensure DELETE is included
+
   credentials: true
 }));
 

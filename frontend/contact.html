@@ -344,13 +344,14 @@
         });
 
         const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            project: document.getElementById('project').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
+    name: document.getElementById('name').value,
+    age: document.getElementById('age').value,
+    qualification: document.getElementById('qualification').value,
+    percentage: document.getElementById('percentage').value,
+    englishTest: document.getElementById('englishTest').value,
+    country: document.getElementById('country').value,
+    message: document.getElementById('message').value
+};
     
         try {
             const response = await fetch("/api/contact", {
