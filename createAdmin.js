@@ -10,7 +10,7 @@ const createAdmin = async () => {
     await mongoose.connect(process.env.MONGO_URL);
     
     const admin = await Admin.create({
-      username: 'admin2',
+      username: 'admin',
       password: 'Admin123' // Will be auto-hashed
     });
 

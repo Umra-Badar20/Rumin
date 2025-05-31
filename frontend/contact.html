@@ -123,7 +123,7 @@
         <!-- Contact Start -->
        <div class="container-fluid contact overflow-hidden py-5">
     <div class="container py-5">
-        <form action="https://formsubmit.co/el/ritova" method="post" id="contactForm" class="row g-5 mb-5">
+        <form action="https://formsubmit.co/ihuzaifahmad@gmail.com" method="POST" id="contactForm" class="row g-5 mb-5">
             <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                 <div class="sub-style">
                     <h5 class="sub-title text-primary pe-3">Quick Contact</h5>
@@ -190,8 +190,10 @@
                     <h5 class="sub-title text-primary pe-3">Let's Connect</h5>
                 </div>
                 <h1 class="display-5 mb-4">Send Your Message</h1>
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_autoresponse" value="Thank you for contacting RuMin Consultants!">
                <input type="hidden" name="_subject" value="New Contact Form Submission">
-                <input type="hidden" name="_next" value="https://rumin-puce.vercel.app/thank-you.html">
                 <div class="row g-4">
                     <div class="col-lg-12 col-xl-6">
                         <div class="form-floating">
@@ -344,30 +346,41 @@
             }
         });
 
+        // Prepare data for both submissions
         const formData = {
-    name: document.getElementById('name').value,
-    age: document.getElementById('age').value,
-    qualification: document.getElementById('qualification').value,
-    percentage: document.getElementById('percentage').value,
-    englishTest: document.getElementById('englishTest').value,
-    country: document.getElementById('country').value,
-    message: document.getElementById('message').value
-};
-    
+            name: document.getElementById('name').value,
+            age: document.getElementById('age').value,
+            qualification: document.getElementById('qualification').value,
+            percentage: document.getElementById('percentage').value,
+            englishTest: document.getElementById('englishTest').value,
+            country: document.getElementById('country').value,
+            message: document.getElementById('message').value
+        };
+
         try {
-            const response = await fetch("/api/contact", {
+            // 1. First try FormSubmit (traditional form submission)
+            const form = document.getElementById('contactForm');
+            const formSubmitResponse = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            // 2. Then send to your API endpoint
+            const apiResponse = await fetch("/api/contact", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                mode: 'cors',  // Use 'cors' instead of 'no-cors'
                 body: JSON.stringify(formData),
-                credentials: "include",
+                credentials: "include"
             });
-    
-            const data = await response.json();
             
-            if (data.success) {
+            const data = await apiResponse.json();
+            
+            if (formSubmitResponse.ok && data.success) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
@@ -375,26 +388,20 @@
                     confirmButtonColor: '#4f46e5',
                     confirmButtonText: 'OK'
                 }).then(() => {
-                    document.getElementById('contactForm').reset();
+                    form.reset();
                 });
             } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: data.error || 'Something went wrong',
-                    confirmButtonColor: '#4f46e5',
-                    confirmButtonText: 'Try Again'
-                });
+                throw new Error('One or both submissions failed');
             }
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Connection Error',
-                text: 'Failed to send message. Please check your connection and try again.',
+                title: 'Error',
+                text: 'Failed to send message. Please try again or contact us directly.',
                 confirmButtonColor: '#4f46e5',
                 confirmButtonText: 'OK'
             });
-            console.error('Error:', error);
+            console.error('Submission Error:', error);
         }
     });
 </script>
