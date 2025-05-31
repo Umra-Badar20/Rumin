@@ -365,6 +365,7 @@ html {
 /*** Single Page Hero Header Start ***/
 .bg-breadcrumb {
     background: linear-gradient(rgba(0, 58, 102, 0.9), rgba(0, 58, 102, 0.8)), url(../img/breadcrumb.png);
+    margin-top: 200px !important;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: initial;
